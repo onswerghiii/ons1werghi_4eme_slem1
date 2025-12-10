@@ -1,14 +1,27 @@
 package tn.esprit.studentmanagement;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+class StudentManagementApplicationTests {
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+    @Test
+    void contextLoads() {
+        // Test de base pour vérifier que le contexte Spring se charge
+    }
 
-@SpringBootApplication
-public class StudentManagementApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(StudentManagementApplication.class, args);
+    @Test
+    void testMainMethod() {
+        // Test de la méthode main
+        StudentManagementApplication.main(new String[]{});
+    }
+
+    @Test
+    void testApplicationClass() {
+        // Test pour vérifier que la classe peut être instanciée
+        StudentManagementApplication app = new StudentManagementApplication();
+        assertNotNull(app);
     }
 }
-
