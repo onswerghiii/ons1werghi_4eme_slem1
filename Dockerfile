@@ -1,11 +1,13 @@
-FROM eclipse-temurin:17-jdk-jammy
-
+# Stage 1: Build
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# On copie le JAR correct (pas le .original)
-COPY target/student-management-0.0.1-SNAPSHOT.jar app.jar
-
-# Ton Spring Boot écoute sur 8089
+# Stage 2: Runtime
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8089
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
